@@ -6,8 +6,8 @@ $(function () {
 
     $(window).on('scroll', function () {
         let sct = $(window).scrollTop();
-        $('._se_').each(function () {
-            if (sct + $(window).innerHeight() - 200 > $(this).offset().top) {
+        $('._mv').each(function () {
+            if (sct + $(window).innerHeight() - 300 > $(this).offset().top) {
                 $(this).addClass('on')
             } else {
                 $(this).removeClass('on')
@@ -45,6 +45,24 @@ $(function () {
         $(this).addClass('on').siblings().removeClass('on');
         $('.history_content li').eq(idx).addClass('on').siblings().removeClass('on');
     });
+
+    $('.mobile_btn').on('click', function () {
+        $(this).toggleClass('on');
+        $('.gnb').toggleClass('on');
+
+    });
+    $('.gnb').on('wheel touchmove', function (e) {
+        e.preventDefault();
+    });
+    $('.gnb>ul>li>a').on('click', function (e) {
+        e.preventDefault();
+        $(this).next().stop().slideDown();
+        $(this).parent().siblings().find('.sub').slideUp();
+    });
+
+    $(window).on('resize', function () {
+        $('.gnb .sub').removeAttr('style');
+    })
 
 
 })
